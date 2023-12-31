@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+#metronome {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#controls {
+  margin-top: 20px;
+} */
