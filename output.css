@@ -544,65 +544,29 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.m-2 {
-  margin: 0.5rem;
-}
-
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-
-.block {
-  display: block;
 }
 
 .flex {
   display: flex;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
 .w-16 {
   width: 4rem;
 }
 
-.w-20 {
-  width: 5rem;
+.w-\[75\%\] {
+  width: 75%;
 }
 
-.min-w-3 {
-  min-width: 0.75rem;
-}
-
-.min-w-5 {
-  min-width: 1.25rem;
-}
-
-.max-w-screen-sm {
-  max-width: 640px;
-}
-
-.flex-row {
-  flex-direction: row;
+.w-\[90vw\] {
+  width: 90vw;
 }
 
 .flex-col {
   flex-direction: column;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-nowrap {
-  flex-wrap: nowrap;
 }
 
 .items-center {
@@ -613,40 +577,20 @@ video {
   justify-content: center;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
-.gap-4 {
-  gap: 1rem;
+.gap-8 {
+  gap: 2rem;
 }
 
 .whitespace-nowrap {
   white-space: nowrap;
 }
 
-.border-2 {
-  border-width: 2px;
-}
-
 .border {
   border-width: 1px;
 }
 
-.border-8 {
-  border-width: 8px;
-}
-
 .border-4 {
   border-width: 4px;
-}
-
-.border-r-2 {
-  border-right-width: 2px;
-}
-
-.border-t-2 {
-  border-top-width: 2px;
 }
 
 .border-r-4 {
@@ -659,28 +603,6 @@ video {
 
 .border-double {
   border-style: double;
-}
-
-.border-\[1\] {
-  border-color: 1;
-}
-
-.border-x-red-500 {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(239 68 68 / var(--tw-border-opacity));
-  border-right-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
-
-.border-x-gray-500 {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(107 114 128 / var(--tw-border-opacity));
-  border-right-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-
-.border-x-gray-400 {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(156 163 175 / var(--tw-border-opacity));
-  border-right-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
 .border-x-gray-700 {
@@ -698,16 +620,12 @@ video {
   padding: 0.5rem;
 }
 
-.p-10 {
-  padding: 2.5rem;
+.p-6 {
+  padding: 1.5rem;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
-.pt-10 {
-  padding-top: 2.5rem;
+.pt-6 {
+  padding-top: 1.5rem;
 }
 
 .text-white {
@@ -720,28 +638,12 @@ video {
   outline-offset: 2px;
 }
 
-/* body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 0.2rem;
-}
-
-#metronome {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-#controls {
-  margin-top: 20px;
-} */
-
 @media (min-width: 768px) {
   .md\:w-24 {
     width: 6rem;
   }
 
-  .md\:flex-row {
-    flex-direction: row;
+  .md\:w-\[30vw\] {
+    width: 30vw;
   }
 }

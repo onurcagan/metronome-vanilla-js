@@ -1,5 +1,7 @@
 let isRunning = false
-let metronomeInterval
+let metronomeIntervalId = null
+let currentBpm = 120 // Default value
+
 const tempoSlider = document.getElementById('tempoSlider')
 const tempoDisplay = document.getElementById('tempoDisplay')
 const startStopButton = document.getElementById('startStop')
@@ -34,19 +36,22 @@ function playClick() {
 // Update the toggleMetronome function
 function toggleMetronome() {
   if (isRunning) {
-    clearInterval(metronomeInterval)
+    clearInterval(metronomeIntervalId)
+    metronomeIntervalId = null
     startStopButton.textContent = 'Start'
   } else {
-    // Resume the audio context in case it was suspended
-    if (audioContext.state === 'suspended') {
-      audioContext.resume()
-    }
-    const bpm = tempoSlider.value
-    const intervalTime = 60000 / bpm
-    metronomeInterval = setInterval(playClick, intervalTime)
+    updateMetronome(currentBpm)
     startStopButton.textContent = 'Stop'
   }
   isRunning = !isRunning
+}
+
+function updateMetronome(bpm) {
+  if (metronomeIntervalId !== null) {
+    clearInterval(metronomeIntervalId)
+  }
+  const intervalTime = 60000 / bpm
+  metronomeIntervalId = setInterval(playClick, intervalTime)
 }
 
 // Event listener for the start/stop button
@@ -54,10 +59,9 @@ startStopButton.addEventListener('click', toggleMetronome)
 
 // Event listener for the tempo slider
 tempoSlider.addEventListener('input', function () {
-  tempoDisplay.textContent = `${this.value} BPM`
+  currentBpm = this.value
+  tempoDisplay.textContent = `${currentBpm} BPM`
   if (isRunning) {
-    // Stop and restart the metronome to reflect the updates in the tempo
-    toggleMetronome()
-    toggleMetronome()
+    updateMetronome(currentBpm)
   }
 })
