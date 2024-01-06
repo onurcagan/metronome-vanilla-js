@@ -1,67 +1,93 @@
-let isRunning = false
-let metronomeIntervalId = null
-let currentBpm = 120 // Default value
+class Metronome {
+  constructor(audioContext, startStopButton, tempoSlider, bpmInput) {
+    this.audioContext = audioContext
+    this.startStopButton = startStopButton
+    this.tempoSlider = tempoSlider
+    this.bpmInput = bpmInput
+    this.isRunning = false
+    this.metronomeIntervalId = null
+    this.currentBpm = 120 // Default value
+    this.setupEventListeners()
+  }
 
-const tempoSlider = document.getElementById('tempoSlider')
-const tempoDisplay = document.getElementById('tempoDisplay')
-const startStopButton = document.getElementById('startStop')
+  setupEventListeners() {
+    this.startStopButton.addEventListener('click', () => this.toggle())
+    this.tempoSlider.addEventListener('input', (e) => this.updateBpm(e.target.value))
+    this.bpmInput.addEventListener('input', (e) => this.handleBpmInputChange(e.target.value))
+    window.addEventListener('keydown', (e) => {
+      // if space bar is pressed
+      if (e.key == ' ') {
+        this.toggle()
+      }
+    })
+  }
 
-// Create an instance of AudioContext
+  handleBpmInputChange(value) {
+    if (this.validateBpm(value)) {
+      this.updateBpm(value)
+    }
+  }
+
+  validateBpm(value) {
+    const bpm = parseInt(value, 10)
+    return bpm >= 40 && bpm <= 208
+  }
+
+  updateBpm(value) {
+    this.currentBpm = value
+    this.bpmInput.value = value
+    this.tempoSlider.value = value
+    if (this.isRunning) {
+      this.updateInterval()
+    }
+  }
+
+  updateInterval() {
+    clearInterval(this.metronomeIntervalId)
+    const intervalTime = 60000 / this.currentBpm
+    this.metronomeIntervalId = setInterval(() => this.playClick(), intervalTime)
+  }
+
+  toggle() {
+    if (this.isRunning) {
+      this.stop()
+    } else {
+      this.start()
+    }
+  }
+
+  start() {
+    this.updateInterval()
+    this.startStopButton.textContent = 'Stop'
+    this.isRunning = true
+  }
+
+  stop() {
+    clearInterval(this.metronomeIntervalId)
+    this.startStopButton.textContent = 'Start'
+    this.isRunning = false
+  }
+
+  playClick() {
+    const oscillator = this.audioContext.createOscillator()
+    const gainNode = this.audioContext.createGain()
+
+    oscillator.type = 'sine'
+    oscillator.connect(gainNode)
+    gainNode.connect(this.audioContext.destination)
+
+    gainNode.gain.setValueAtTime(0, this.audioContext.currentTime)
+    gainNode.gain.linearRampToValueAtTime(1, this.audioContext.currentTime + 0.001)
+    gainNode.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.1)
+
+    oscillator.start(this.audioContext.currentTime)
+    oscillator.stop(this.audioContext.currentTime + 0.1)
+  }
+}
+
+// Initialize the metronome
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-function playClick() {
-  // Create an oscillator node
-  const oscillator = audioContext.createOscillator()
-  // Create a gain node
-  const gainNode = audioContext.createGain()
-
-  oscillator.type = 'sine'
-  // Connect the oscillator to the gain node
-  oscillator.connect(gainNode)
-  // Connect the gain node to the audio context destination (speakers)
-  gainNode.connect(audioContext.destination)
-
-  // Set the duration of the click
-  gainNode.gain.setValueAtTime(0, audioContext.currentTime)
-  gainNode.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.001)
-  gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.1)
-
-  // Start the oscillator
-  oscillator.start(audioContext.currentTime)
-  // Stop the oscillator after the click's duration
-  oscillator.stop(audioContext.currentTime + 0.1)
-}
-
-// Function to start or stop the metronome
-// Update the toggleMetronome function
-function toggleMetronome() {
-  if (isRunning) {
-    clearInterval(metronomeIntervalId)
-    metronomeIntervalId = null
-    startStopButton.textContent = 'Start'
-  } else {
-    updateMetronome(currentBpm)
-    startStopButton.textContent = 'Stop'
-  }
-  isRunning = !isRunning
-}
-
-function updateMetronome(bpm) {
-  if (metronomeIntervalId !== null) {
-    clearInterval(metronomeIntervalId)
-  }
-  const intervalTime = 60000 / bpm
-  metronomeIntervalId = setInterval(playClick, intervalTime)
-}
-
-// Event listener for the start/stop button
-startStopButton.addEventListener('click', toggleMetronome)
-
-// Event listener for the tempo slider
-tempoSlider.addEventListener('input', function () {
-  currentBpm = this.value
-  tempoDisplay.textContent = `${currentBpm} BPM`
-  if (isRunning) {
-    updateMetronome(currentBpm)
-  }
-})
+const startStopButton = document.getElementById('startStop')
+const tempoSlider = document.getElementById('tempoSlider')
+const bpmInput = document.getElementById('bpmInput')
+const metronome = new Metronome(audioContext, startStopButton, tempoSlider, bpmInput)
