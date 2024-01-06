@@ -4,7 +4,7 @@
   "description": "a small metronome webapp for my personal use.",
   "main": "script.js",
   "scripts": {
-    "twind": "npx tailwindcss -i ./styles.css -o ./output.css --watch",
+    "twind": "npx tailwindcss -i ./src/styles.css -o ./src/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
