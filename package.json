@@ -2,7 +2,7 @@
   "name": "metronome-vanilla",
   "version": "1.1.0",
   "description": "a small metronome webapp for my personal use.",
-  "main": "script.js",
+  "main": "src/script.js",
   "scripts": {
     "twind": "npx tailwindcss -i ./src/styles.css -o ./src/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
