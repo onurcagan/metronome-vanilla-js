@@ -8,13 +8,43 @@
 </head>
 <body class="flex items-center justify-center p-2 pt-6 bg-black sm:pt-12">
     <div id="metronome" class="flex items-center justify-center text-white">
-        <div id="controls" class="flex flex-col p-6 gap-8 justify-center items-center border-4 border-double w-[90vw] sm:w-[50vw] md:w-[40vw] lg:w-[30vw] text-center">
-            <button id="startStop" class="w-16 p-2 border border-t-4 border-r-4 outline-none border-x-gray-700 sm:w-20 md:w-24">Start</button>
-            <input type="range" id="tempoSlider" min="40" max="200" value="120" class="w-[75%] mx-2">
+        <div id="controls" class="flex flex-col p-6 gap-8 justify-center items-center border-4 border-dotted w-[90vw] sm:w-[50vw] md:w-[40vw] lg:w-[30vw] text-center border-slate-600">
+            <div>
+                Time Signatures
+            </div>
+            <div class="flex flex-row gap-2">
+                <select name="Time Signatures" id="timeSignatureTop" class="p-1 text-center bg-black border-b-2 border-red-600 rounded-lg outline-none min-w-14">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6" selected>6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                </select>
+                 /
+            <select name="Time Signatures" id="timeSignatureBottom" class="p-1 text-center bg-black border-b-2 border-red-600 rounded-lg outline-none min-w-14">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="8" selected>8</option>
+            </select>
+            </div>
+            <input type="range" id="tempoSlider" min="40" max="200" value="120" class="w-[75%] mx-2 accent-red-600">
             <div class="flex flex-col">
                 <div>BPM</div>
-                 <input type="number" id="bpmInput" min="40" max="200" value="120" class="text-center bg-black sm:ml-4" inputmode="numeric" > 
+                <input type="number" id="bpmInput" min="40" max="200" value="120" class="text-center bg-black sm:ml-4" inputmode="numeric" > 
             </div>
+            <button id="startStop" class="w-16 p-2 border border-t-4 border-r-4 border-red-600 rounded-xl sm:w-20 md:w-24 ">Start</button>
         </div>
     </div>
     <script src="script.js"></script>
