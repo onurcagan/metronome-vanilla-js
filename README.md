@@ -23,7 +23,8 @@ This is a simple metronome web app created for personal use. It provides a strai
 - HTML
 - CSS (Tailwind CSS)
 - JavaScript
-- Author(s)
+
+### Author(s)
 - Me, Myself and I
 
 Feel free to customize and use this metronome web app for your own purposes. Enjoy your rhythm practice!
