@@ -833,6 +833,11 @@ video {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .from-orange-300 {
   --tw-gradient-from: #fdba74 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(253 186 116 / 0) var(--tw-gradient-to-position);
@@ -987,6 +992,10 @@ video {
 
   .sm\:w-\[50vw\] {
     width: 50vw;
+  }
+
+  .sm\:min-w-14 {
+    min-width: 3.5rem;
   }
 
   .sm\:pt-20 {

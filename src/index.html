@@ -13,7 +13,7 @@
                 Time Signatures
             </div>
             <div class="flex flex-row gap-2">
-                <select name="Time Signatures" id="timeSignatureTop" class="p-1 text-center bg-black border-b-2 border-red-600 rounded-lg outline-none min-w-14">
+                <select name="Time Signatures" id="timeSignatureTop" class="p-1 text-center bg-black border-b-2 border-red-600 rounded-lg outline-none sm:min-w-14">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -32,14 +32,14 @@
                     <option value="16">16</option>
                 </select>
                  /
-            <select name="Time Signatures" id="timeSignatureBottom" class="p-1 text-center bg-black border-b-2 border-red-600 rounded-lg outline-none min-w-14">
+            <select name="Time Signatures" id="timeSignatureBottom" class="p-1 text-center bg-black border-b-2 border-red-600 rounded-lg outline-none sm:min-w-14">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="4">4</option>
                 <option value="8" selected>8</option>
             </select>
             </div>
-            <input type="range" id="tempoSlider" min="40" max="200" value="120" class="w-[75%] mx-2 accent-red-600">
+            <input type="range" id="tempoSlider" min="40" max="200" value="120" step="5" class="w-[75%] mx-2 accent-red-600">
             <div class="flex flex-col">
                 <div>BPM</div>
                 <input type="number" id="bpmInput" min="40" max="200" value="120" class="text-center bg-black sm:ml-4" inputmode="numeric" > 
